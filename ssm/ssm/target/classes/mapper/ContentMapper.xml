@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.dao.ContentMapper">
+  
+  <select id="findAll" parameterType="contentVo" resultType="contentVo">
+  		SELECT c.*,y.categoryname yname FROM content c , contentcategory Y WHERE c.contentCategoryId = y.contentCategoryId
+			<if test="contenttitle !=null and contenttitle!=''">
+				and c.contenttitle like '%${contenttitle}%'
+			</if>
+			<if test="contentcategoryid != null and contentcategoryid != 0">
+				and c.contentCategoryId = #{contentcategoryid}
+			</if>
+  </select>
+  
+</mapper>
